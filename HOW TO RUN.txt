@@ -1,0 +1,13 @@
+MCP Dev-Workflow Automation Agent
+
+working type cmd inside the folder , than run these commands in cmd
+
+.venv\Scripts\activate
+
+python demo.py
+
+python demo.py "Add payment checkout for online orders"
+
+python demo.py "Add search with filters for products"
+
+python demo.py "Create a sales dashboard with CSV export"

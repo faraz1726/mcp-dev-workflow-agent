@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "devflow": {
+      "command": "C:/path/to/mcp-dev-workflow-agent/.venv/Scripts/python.exe",
+      "args": ["-m", "devflow.server"],
+      "cwd": "C:/path/to/mcp-dev-workflow-agent"
+    }
+  }
+}
