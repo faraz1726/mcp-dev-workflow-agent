@@ -3,9 +3,11 @@
 Usage: python demo.py "Add password reset via email with rate limiting"
 """
 import asyncio
+import logging
 import sys
 
 from fastmcp import Client
+from fastmcp.exceptions import ToolError
 
 from devflow.server import mcp
 
@@ -13,11 +15,17 @@ DEFAULT = "Add user login with password reset via email and let users upload a p
 
 
 async def main(request: str):
+    logging.disable(logging.CRITICAL)  # hide technical log lines for a clean demo
     async with Client(mcp) as client:
         tools = await client.list_tools()
         print("TOOLS:", ", ".join(t.name for t in tools), "\n")
-        res = await client.call_tool("run_full_workflow", {"feature_request": request,
-                                                           "project_key": "DEMO"})
+        try:
+            res = await client.call_tool("run_full_workflow", {"feature_request": request,
+                                                               "project_key": "DEMO"})
+        except ToolError as e:
+            print("Could not run the workflow ->", e)
+            print('\nTry a longer idea, for example:\n  python demo.py "Add search with filters for products"')
+            return
         data = res.data
         print("Workflow ok:", data.all_steps_ok)
         print("Detected capabilities:", data.requirements.detected_capabilities)
@@ -32,7 +40,7 @@ async def main(request: str):
         print("\nBad input test:")
         try:
             await client.call_tool("generate_tickets", {"feature_request": "hi"})
-        except Exception as e:
+        except ToolError as e:
             print("  Clean error ->", e)
 
 
