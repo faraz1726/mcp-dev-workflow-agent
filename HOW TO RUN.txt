@@ -1,6 +1,12 @@
 MCP Dev-Workflow Automation Agent
 
-working type cmd inside the folder , than run these commands in cmd
+type cmd inside the folder , than run these commands in cmd
+
+for initialising the environment : python -m pip install fastmcp pydantic pytest
+
+python -m pip list , it should show fastmcp 
+
+	WORKING : 
 
 .venv\Scripts\activate
 
@@ -11,3 +17,15 @@ python demo.py "Add payment checkout for online orders"
 python demo.py "Add search with filters for products"
 
 python demo.py "Create a sales dashboard with CSV export"
+
+python demo.py "Add payment checkout for online orders with refund support"
+
+python demo.py "Add search with filters and sorting for products"
+
+python demo.py "Let users upload profile photo and PDF documents"
+
+python demo.py "Create a sales dashboard with CSV export for managers"
+
+python demo.py "Send email and SMS reminders to users before appointments"
+
+ERROR HANDLING : python demo.py "hi"
